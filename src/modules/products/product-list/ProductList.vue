@@ -1,11 +1,13 @@
 <template>
-    <div class="container-fluid">
-        <div class="product-list row" ref="scrollComponent">
+    <div class="container-fluid ">
+        <div class="product-list row  " ref="scrollComponent">
             <single-product v-for="product in products" :key="product" :product="product"  />
         </div>
-        <div class="spinner-border text-primary" role="status" v-show="loadingIcon">
+      <div class="spinner-container d-flex justify-content-center mt-3">
+        <div class="spinner-border text-success  " role="status" v-show="loadingIcon">
             <span class="visually-hidden">Loading...</span>
         </div>
+      </div>
     </div>
 </template>
 <script>
@@ -37,7 +39,7 @@ export default {
                     isLoading = false;
                     loadingIcon.value = false;
                 }, 2000);
-               
+
             }
             const handleScroll = (e) => {
                 let element = scrollComponent.value;
@@ -46,7 +48,7 @@ export default {
                     if(!isLoading) {
                         loadMoreProducts()
                     }
-                    isLoading = true;  
+                    isLoading = true;
                 }
             }
             return {

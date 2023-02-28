@@ -1,6 +1,6 @@
 <template>
     <div class="col-md-4 col-lg-4 product-skeleton " >
-        <div class="product-skeleton__image p-2"></div>
+        <div class="product-skeleton__image p-2 img-fluid" ></div>
         <div class="product-skeleton__content p-2">
         <div class="product-skeleton__title p-2"></div>
         <div class="product-skeleton__price p-2"></div>
@@ -22,7 +22,7 @@
     overflow: hidden;
 }
 .product-skeleton__image {
-    width: 400px;
+    width: 700px;
     height: 400px;
     background-color: #f0f0f0;
     border-radius: 0.5rem;
