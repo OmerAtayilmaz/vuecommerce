@@ -14,10 +14,21 @@
         <li class="nav-item">
           <router-link class="nav-link" active-class="active" to="/products" >Products</router-link>
         </li>
+        <li class="nav-item">
+          <router-link class="nav-link" active-class="active" to="/categories" >Categories</router-link>
+        </li>
       </ul>
     </div>
   </nav>
 </template>
+<script>
+ export default {
+   created() {
+     console.log(this.$route);
+     console.log(this.$router);
+   }
+ }
+</script>
 <style>
 ul {
   display: flex;

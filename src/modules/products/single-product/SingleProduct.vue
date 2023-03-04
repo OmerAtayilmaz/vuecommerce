@@ -6,11 +6,11 @@
     </div>
     <div class="product--info text-center w-100 ">
         <h6>{{product.name}}</h6>
-        <p>{{product.description}}</p>
-        <p>{{product.price}}</p>
+        <p>{{product.description.substring(0,100)}}</p>
+        <p>${{product.price}}</p>
     </div>
   <div class="product--actions d-flex justify-content-center w-100">
-    <router-link to="/products/5"><button class="btn bg-success text-white">DETAILS</button></router-link>
+    <router-link :to="getLink"><button class="btn bg-success text-white">DETAILS</button></router-link>
   </div>
 </div>
 </template>
@@ -22,9 +22,7 @@ let isActive = ref(false);
 export default{
 
     name:"SingleProduct",
-    props:{
-        product:Object
-    },
+    props:["product"],
     components:{
         ProductSkeleton
     },
@@ -37,6 +35,11 @@ export default{
         return{
             isActive
         }
-    }
+    },
+  computed:{
+      getLink(){
+        return "/products/"+this.product.guid;
+      }
+  }
 }
 </script>

@@ -12,7 +12,6 @@ export const useProductStore = defineStore("productStore",{
             const res = await fetch("http://localhost:3000/products");
             const data =await res.json();
             this.products = data;
-            console.log(this.products[0]);
             this.loading = false;
         }
     }

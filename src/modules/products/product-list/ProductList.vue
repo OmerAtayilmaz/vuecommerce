@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid ">
         <div class="product-list row  " ref="scrollComponent">
-            <single-product v-for="product in products" :key="product" :product="product"  />
+            <single-product v-for="product in products" :key="product.index" :product="product"  />
         </div>
       <div class="spinner-container d-flex justify-content-center mt-3">
         <div class="spinner-border text-success  " role="status" v-show="loadingIcon">
@@ -13,18 +13,23 @@
 <script>
 import { ref,onMounted, onUnmounted } from "vue";
 import SingleProduct from "../single-product/SingleProduct.vue";
-import getProducts from "../../../store/products";
+import { useProductStore } from "../../../store/productStore";
 const products = ref(null);
 let isLoading = false;
 let loadingIcon = ref(false);
+
 export default {
     name: "ProductList",
     components:{
         SingleProduct
     },
         setup(){
-            const products = ref(getProducts(12))
-            const scrollComponent = ref(null)
+            const productStore = useProductStore();
+            productStore.getProducts();
+            const products = ref(productStore.products);
+            const scrollComponent = ref(null);
+
+
             onMounted(() => {
                 window.addEventListener("scroll", handleScroll)
             })
@@ -34,8 +39,7 @@ export default {
             const loadMoreProducts = () => {
                 loadingIcon.value = true;
                 setTimeout(()=>{
-                    let newProducts = getProducts(12)
-                    products.value.push(...newProducts)
+                    products.value.push(...productStore.products)
                     isLoading = false;
                     loadingIcon.value = false;
                 }, 2000);

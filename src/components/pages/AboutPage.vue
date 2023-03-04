@@ -1,7 +1,7 @@
 <template>
   <div class="about-page">
-    <h1 v-if="productStore.loading">About Page</h1>
-    <div v-for="product in productStore.products" :key="product.id">
+    <h1 v-if="productStore.loading">Loading...</h1>
+    <div v-for="product in productStore.products" :key="product.index">
       <h2>{{product.name}}</h2>
       <p>{{product.description}}</p>
     </div>
